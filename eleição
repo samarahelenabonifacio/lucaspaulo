@@ -1,0 +1,83 @@
+using System;
+
+class Program {
+    static void Main(string[] args) {
+      int[] pessoas = new int[3]; // numero da pessoa
+      string[] email = new string[3]; //email da pessoa
+      string[] senha = new string[3]; // senha da pessoa
+      string[] candidatos = {"Ingrid", "Samara", "Elizabeth"}; 
+      int[] votos = new int[3];
+      string emaillogin = "", senhalogin = "";
+      bool sair = false;
+      int opcao = 0, contador = 0, voto = 0;
+
+      while(sair!=true){
+        Console.WriteLine("[1] - Cadastrar\n[2] - Votar\n[3] - Ver votos\n[0] - Sair");
+        opcao = int.Parse(Console.ReadLine());
+        Console.Clear();
+        switch(opcao){
+
+          default:
+            Console.WriteLine("Essa opção não existe.");
+            Console.ReadLine();
+          break;
+
+          case 0:
+            sair = true;
+            Console.Clear();
+          break;
+
+          case 1:
+            if(contador<3){
+              Console.Write("Insira seu email: ");
+              email[contador] = Console.ReadLine();
+              Console.Write("Insira sua senha: ");
+              senha[contador] = Console.ReadLine();
+              contador++;
+              Console.Clear();
+            }else{
+              Console.Write("O número máximo de pessoas já estão cadastradas.");
+              Console.ReadLine();
+              Console.Clear();
+            }
+          break;
+
+          case 2:
+            Console.Write("Insira seu email: ");
+            emaillogin = Console.ReadLine();
+            Console.Write("Insira sua senha: ");
+            senhalogin = Console.ReadLine();
+
+            for(int x = 0; x<=2; x++){
+              if(emaillogin == email[x] && senhalogin == senha[x]){
+                Console.Write($"Escolha sue candidate\n[0] - {candidatos[0]}\n[1] - {candidatos[1]}\n[2] - {candidatos[2]}\n[4] - Nulo");
+                voto = int.Parse(Console.ReadLine());
+                votos[voto]++;
+                Console.WriteLine("Voto efetivado.");
+                Console.ReadLine();
+                Console.Clear();
+                x = 3;
+              }else{
+                Console.WriteLine("Login incorreto. Preencha os dados corretamente para votar.");
+                Console.ReadLine();
+                x = 3;
+              }
+                Console.Clear();
+            }
+          break;
+
+          case 3:
+            for(int x = 0; x<=2; x++){
+              Console.WriteLine($"{candidatos[x]}: {votos[x]} votos\n- - - - - -");
+            }
+            Console.ReadLine();
+            Console.Clear();
+          break;
+
+          
+        }
+
+      }
+
+    }
+}
